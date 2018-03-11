@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import cv2
+import random
 
 point_x = 0.33
 point_y = 0.33
@@ -30,13 +31,23 @@ RGB_b = int(RGB_b)
 
 img = np.zeros((270, 480, 3), np.uint8)
 
-for i in range(0, 480):
-    for j in range(0, 270):
-        cv2.rectangle(img, (i, j), (i+1, j+1), ((i+j)*256/750, (i+j)*256/750, (i+j)*256/750), -1)
+#d = {'x': [range(0, 479)], 'y': [range(0, 269)]}
+d = {'x': [0, 100, 200], 'y': [0, 100, 200]}
+df = pd.DataFrame(data=d)
+
+#for i in range(3):
+#    temp_x = df.ix[i, 'x']
+#    temp_y = df.ix[i, 'y']
+#    print(temp_x, temp_y)
+#    cv2.rectangle(img, (temp_x, temp_y), (temp_x + 100, temp_y +100), (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)), -1)
+
+#for i in range(0, 479):
+#    for j in range(0, 269):
+#        cv2.rectangle(img, (i, j), (i+1, j+1), ((i+j)*256/750, (i+j)*256/750, (i+j)*256/750), -1)
 
 cv2.imshow('image', img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-cv2.imwrite("test.png", img)
-cv2.imwrite("test.jpg", img)
-cv2.imwrite("test.tif", img)
+#cv2.imwrite("test.png", img)
+#cv2.imwrite("test.jpg", img)
+#cv2.imwrite("test.tif", img)
