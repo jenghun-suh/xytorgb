@@ -1,8 +1,7 @@
 import numpy as np
 import pandas as pd
-import shapely as sh
 import matplotlib.pyplot as plt
-
+import cv2
 
 point_x = 0.33
 point_y = 0.33
@@ -29,7 +28,15 @@ RGB_r = int(RGB_r)
 RGB_g = int(RGB_g)
 RGB_b = int(RGB_b)
 
-print(RGB_r)
-print(RGB_b)
-print(RGB_b)
+img = np.zeros((270, 480, 3), np.uint8)
 
+for i in range(0, 480):
+    for j in range(0, 270):
+        cv2.rectangle(img, (i, j), (i+1, j+1), ((i+j)*256/750, (i+j)*256/750, (i+j)*256/750), -1)
+
+cv2.imshow('image', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+cv2.imwrite("test.png", img)
+cv2.imwrite("test.jpg", img)
+cv2.imwrite("test.tif", img)
