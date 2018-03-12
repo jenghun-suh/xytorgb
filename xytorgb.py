@@ -29,23 +29,24 @@ def convert_xyY_RGB(point_x, point_y, int_value, int_max):
 
 
 df = pd.read_csv('test.txt', sep = '\t')
-img = np.zeros((270, 480, 3), np.uint8)
-int_max = 100
+img = np.zeros((300, 300, 3), np.uint8)
+int_max = 256
 print(df)
 
-for i in range(16):
+for i in range(9):
     temp_x = df.ix[i, 'x']
     temp_y = df.ix[i, 'y']
     temp_Red_int = df.ix[i, 'Red_int']
     temp_Red_x = df.ix[i, 'Red_x']
     temp_Red_y = df.ix[i, 'Red_y']
     temp_R, temp_G, temp_B = convert_xyY_RGB(temp_Red_x, temp_Red_y, temp_Red_int, int_max)
-    cv2.rectangle(img, (temp_x*100, temp_y*100), (temp_x + 100, temp_y + 100), (temp_B, temp_G, temp_R), -1)
-    print(i)
+    cv2.rectangle(img, (temp_x * 100, temp_y * 100), ((temp_x + 1) * 100, (temp_y + 1) * 100), (temp_B, temp_G, temp_R), -1)
+    print(temp_R, temp_G, temp_B)
+
+cv2.imwrite("test.png", img)
+cv2.imwrite("test.jpg", img)
+cv2.imwrite("test.tif", img)
 
 cv2.imshow('image', img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-#cv2.imwrite("test.png", img)
-#cv2.imwrite("test.jpg", img)
-#cv2.imwrite("test.tif", img)
